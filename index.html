@@ -12,23 +12,26 @@
             background-color: #f5f5f5;
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1000px;
-            margin: 30px auto;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
             display: grid;
             grid-template-columns: 300px 1fr;
-            gap: 30px;
+            gap: 40px;
+            min-height: 100vh;
         }
         
         .sidebar {
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            height: 100vh;
             position: sticky;
-            top: 30px;
-            height: fit-content;
+            top: 0;
         }
         
         .main-name {
@@ -45,7 +48,7 @@
             border-radius: 50%;
             overflow: hidden;
             border: 4px solid #3498db;
-            margin-bottom: 20px;
+            margin: 0 auto 25px;
         }
         
         .profile-image {
@@ -59,41 +62,42 @@
             padding: 15px;
             background-color: #f8f9fa;
             border-radius: 8px;
+            font-size: 14px;
         }
         
         .contact-info p {
             margin: 8px 0;
         }
         
-        nav {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 30px;
+        .content {
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
         
-        nav a {
-            text-decoration: none;
-            color: #3498db;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 5px;
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .tab {
+            padding: 8px 20px;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            background-color: #f1f1f1;
             transition: all 0.3s ease;
         }
         
-        nav a:hover {
-            background-color: #e8f4fc;
+        .tab.active {
+            background-color: #3498db;
+            color: white;
         }
         
-        .content {
-            padding: 0 20px;
-        }
-        
-        h2 {
-            color: #3498db;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 5px;
-            margin-top: 30px;
+        .tab:hover:not(.active) {
+            background-color: #e1e1e1;
         }
         
         .page {
@@ -104,31 +108,76 @@
             display: block;
         }
         
-        ul {
-            padding-left: 20px;
+        h2 {
+            color: #3498db;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
         }
         
-        li {
+        .project, .experience {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .project:last-child, .experience:last-child {
+            border-bottom: none;
+        }
+        
+        .project-title, .experience-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .project-meta, .experience-meta {
+            color: #666;
+            font-style: italic;
             margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .project-link a, .experience-details a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .project-link a:hover, .experience-details a:hover {
+            text-decoration: underline;
+        }
+        
+        .experience-details {
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+        
+        .experience-details li {
+            margin-bottom: 8px;
+            list-style-type: disc;
         }
         
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
-                padding: 15px;
+                padding: 10px;
             }
             
             .sidebar {
+                height: auto;
                 position: static;
-                text-align: center;
+                margin-bottom: 20px;
             }
             
-            .profile-image-container {
-                margin: 0 auto 20px;
+            .content {
+                padding: 20px;
             }
             
-            .main-name {
-                text-align: center;
+            .tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 5px;
             }
         }
     </style>
@@ -147,16 +196,16 @@
                 <p><strong>University:</strong> Amirkabir University of Technology</p>
                 <p><strong>Email:</strong> mojtabamoslem.82@gmail.com</p>
             </div>
-            
-            <nav>
-                <a href="#" class="nav-link" data-page="about">About Me</a>
-                <a href="#" class="nav-link" data-page="projects">Projects</a>
-                <a href="#" class="nav-link" data-page="experiences">Experiences</a>
-            </nav>
         </div>
         
         <!-- Main Content -->
         <div class="content">
+            <div class="tabs">
+                <div class="tab active" data-page="about">About Me</div>
+                <div class="tab" data-page="projects">Projects</div>
+                <div class="tab" data-page="experiences">Experiences</div>
+            </div>
+            
             <!-- About Me Page -->
             <div id="about" class="page active">
                 <h2>About Me</h2>
@@ -172,60 +221,70 @@
             <!-- Projects Page -->
             <div id="projects" class="page">
                 <h2>Projects</h2>
-                <ul>
-                    <li>
-                        <strong>Project 1:</strong> Description of project 1 and technologies used.
-                    </li>
-                    <li>
-                        <strong>Project 2:</strong> Description of project 2 and technologies used.
-                    </li>
-                    <!-- Add more projects as needed -->
-                </ul>
+                
+                <div class="project">
+                    <div class="project-title">Design of Compiler</div>
+                    <div class="project-meta">Amirkabir, 2024, Spring</div>
+                    <div class="project-link">
+                        <a href="https://github.com/Mahdi-zarei/CD-Project" target="_blank">Download paper</a>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <div class="project-title">Software Engineering</div>
+                    <div class="project-meta">Amirkabir, 2022, Fall</div>
+                    <div class="project-link">
+                        <a href="https://github.com/Alijgh003/SE1_PullRequest_admin_front" target="_blank">Download paper</a>
+                    </div>
+                </div>
             </div>
             
             <!-- Experiences Page -->
             <div id="experiences" class="page">
                 <h2>Experiences</h2>
-                <ul>
-                    <li>
-                        <strong>Position 1:</strong> Company Name | Duration<br>
-                        Description of responsibilities and achievements.
-                    </li>
-                    <li>
-                        <strong>Position 2:</strong> Company Name | Duration<br>
-                        Description of responsibilities and achievements.
-                    </li>
-                    <!-- Add more experiences as needed -->
-                </ul>
+                
+                <div class="experience">
+                    <div class="experience-title">Software Engineer</div>
+                    <div class="experience-meta">Amnpardazan | 2024 - Present</div>
+                    <div class="experience-details">
+                        <ul>
+                            <li><strong>Responsibilities:</strong> Software engineer</li>
+                            <li><strong>Key project:</strong> Develop product</li>
+                            <li><strong>Skills gained:</strong> Linux</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience">
+                    <div class="experience-title">Editor</div>
+                    <div class="experience-meta">Ghalamchi | 2022 - 2024</div>
+                    <div class="experience-details">
+                        <ul>
+                            <li><strong>Responsibilities:</strong> Edit book</li>
+                            <li><strong>Key project:</strong> 12th grade math book</li>
+                            <li><strong>Skills gained:</strong> Focus and accuracy</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
+            const tabs = document.querySelectorAll('.tab');
             const pages = document.querySelectorAll('.page');
             
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and pages
+                    tabs.forEach(t => t.classList.remove('active'));
+                    pages.forEach(page => page.classList.remove('active'));
                     
-                    // Hide all pages
-                    pages.forEach(page => {
-                        page.classList.remove('active');
-                    });
-                    
-                    // Show selected page
+                    // Add active class to clicked tab and corresponding page
+                    this.classList.add('active');
                     const pageId = this.getAttribute('data-page');
                     document.getElementById(pageId).classList.add('active');
-                    
-                    // Update active link styling
-                    navLinks.forEach(link => {
-                        link.style.backgroundColor = '';
-                        link.style.color = '#3498db';
-                    });
-                    this.style.backgroundColor = '#3498db';
-                    this.style.color = 'white';
                 });
             });
         });
