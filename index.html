@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mojtaba Moslemyazdi - Portfolio</title>
     <style>
         body {
@@ -108,7 +107,7 @@
             display: block;
         }
         
-        h2 {
+        h1, h2 {
             color: #154360;
             margin-top: 0;
             padding-bottom: 10px;
@@ -185,7 +184,7 @@
 <body>
     <div class="container">
         <!-- Sidebar -->
-        <div class="sidebar">
+        <aside class="sidebar" role="complementary">
             <div class="main-name">Mojtaba Moslemyazdi</div>
             
             <div class="profile-image-container">
@@ -196,18 +195,20 @@
                 <p><strong>University:</strong> Amirkabir University of Technology</p>
                 <p><strong>Email:</strong> mojtabamoslem.82@gmail.com</p>
             </div>
-        </div>
+        </aside>
         
         <!-- Main Content -->
-        <div class="content">
-            <div class="tabs">
+        <main class="content" role="main">
+            <h1>Mojtaba Moslemyazdi's Portfolio</h1>
+            
+            <nav class="tabs" role="navigation">
                 <div class="tab active" data-page="about">About Me</div>
                 <div class="tab" data-page="projects">Projects</div>
                 <div class="tab" data-page="experiences">Experiences</div>
-            </div>
+            </nav>
             
             <!-- About Me Page -->
-            <div id="about" class="page active">
+            <section id="about" class="page active" role="region" aria-label="About Me">
                 <h2>About Me</h2>
                 <p>Hi, I'm Mojtaba Moslem Yazdi</p>
                 <ul>
@@ -216,34 +217,34 @@
                     <li>My academic journey has equipped me with strong foundations in algorithms, software development, and system design.</li>
                     <li>My curiosity drives me to explore emerging fields like AI and web technologies.</li>
                 </ul>
-            </div>
+            </section>
             
             <!-- Projects Page -->
-            <div id="projects" class="page">
+            <section id="projects" class="page" role="region" aria-label="Projects">
                 <h2>Projects</h2>
                 
-                <div class="project">
+                <article class="project">
                     <div class="project-title">Design of Compiler</div>
                     <div class="project-meta">Amirkabir, 2024, Spring</div>
                     <div class="project-link">
                         <a href="https://github.com/Mahdi-zarei/CD-Project" target="_blank">Download paper</a>
                     </div>
-                </div>
+                </article>
                 
-                <div class="project">
+                <article class="project">
                     <div class="project-title">Software Engineering</div>
                     <div class="project-meta">Amirkabir, 2022, Fall</div>
                     <div class="project-link">
                         <a href="https://github.com/Alijgh003/SE1_PullRequest_admin_front" target="_blank">Download paper</a>
                     </div>
-                </div>
-            </div>
+                </article>
+            </section>
             
             <!-- Experiences Page -->
-            <div id="experiences" class="page">
+            <section id="experiences" class="page" role="region" aria-label="Experiences">
                 <h2>Experiences</h2>
                 
-                <div class="experience">
+                <article class="experience">
                     <div class="experience-title">Software Engineer</div>
                     <div class="experience-meta">Amnpardazan | 2024 - Present</div>
                     <div class="experience-details">
@@ -253,9 +254,9 @@
                             <li><strong>Skills gained:</strong> Linux</li>
                         </ul>
                     </div>
-                </div>
+                </article>
                 
-                <div class="experience">
+                <article class="experience">
                     <div class="experience-title">Editor</div>
                     <div class="experience-meta">Ghalamchi | 2022 - 2024</div>
                     <div class="experience-details">
@@ -265,9 +266,9 @@
                             <li><strong>Skills gained:</strong> Focus and accuracy</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
+                </article>
+            </section>
+        </main>
     </div>
 
     <script>
